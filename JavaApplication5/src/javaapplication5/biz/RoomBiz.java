@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javaapplication5.dao.Player;
+import javaapplication5.dao.Room;
 
 /**
  *
@@ -25,18 +25,16 @@ public class RoomBiz {
         return this.connStr;
     }
     
-    public void Insert(Player model) throws SQLException {
+    public void Insert(Room model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String UseName = model.getUserName();
-            String PassWord = model.getPassWord();
-            String Email = model.getEmail();
-            int Friend = model.getFriend();
+            String TypeMatch = model.getTypeMatch();
+            String Note = model.getTypeMatch();
             
-            s.executeQuery("insert into Player values (" + ID + ",'" + UseName + "', '"+ PassWord + "', '" + Email + "', " + Friend + ")");
+            s.executeQuery("insert into Room values (" + ID + ",'" + TypeMatch + "', '"+ TypeMatch + "')");
             
         }
        catch (SQLException ex){
@@ -49,18 +47,16 @@ public class RoomBiz {
     }
     
     
-    public void Update(Player model) throws SQLException {
+    public void Update(Room model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String UseName = model.getUserName();
-            String PassWord = model.getPassWord();
-            String Email = model.getEmail();
-            int Friend = model.getFriend();
+            String TypeMatch = model.getTypeMatch();
+            String Note = model.getNote();
             
-            ResultSet rs = s.executeQuery("UPDATE Player SET ID =" + ID + ", UseName = '" + UseName + "', PassWord = '"+ PassWord + "', Email = '" + Email + "', Friend = " + Friend + " Where ID =" + ID);
+            ResultSet rs = s.executeQuery("UPDATE Room SET ID =" + ID + ", TypeMatch = '" + TypeMatch + "', Note = '"+ Note + " Where ID =" + ID);
           
         }
        catch (SQLException ex){
@@ -73,13 +69,13 @@ public class RoomBiz {
     }
     
     
-    public void Delete(Player model) throws SQLException {
+    public void Delete(Room model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String sql = "DELETE FROM Player WHERE ID = " + ID;
+            String sql = "DELETE FROM Room WHERE ID = " + ID;
             
             
             ResultSet rs = s.executeQuery(sql);    

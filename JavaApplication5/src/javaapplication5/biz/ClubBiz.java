@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javaapplication5.dao.Player;
+import javaapplication5.dao.Club;
 /**
  *
  * @author Admin
@@ -24,18 +24,16 @@ public class ClubBiz {
         return this.connStr;
     }
     
-    public void Insert(Player model) throws SQLException {
+    public void Insert(Club model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String UseName = model.getUserName();
-            String PassWord = model.getPassWord();
-            String Email = model.getEmail();
-            int Friend = model.getFriend();
+            String List = model.getList();
+            String ClubName = model.getClubName();
             
-            s.executeQuery("insert into Player values (" + ID + ",'" + UseName + "', '"+ PassWord + "', '" + Email + "', " + Friend + ")");
+            s.executeQuery("insert into Club values (" + ID + ",'" + List + "', '"+ ClubName + "')");
             
         }
        catch (SQLException ex){
@@ -48,19 +46,16 @@ public class ClubBiz {
     }
     
     
-    public void Update(Player model) throws SQLException {
+    public void Update(Club model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String UseName = model.getUserName();
-            String PassWord = model.getPassWord();
-            String Email = model.getEmail();
-            int Friend = model.getFriend();
+            String List = model.getList();
+            String ClubName = model.getClubName();
             
-            ResultSet rs = s.executeQuery("UPDATE Player SET ID =" + ID + ", UseName = '" + UseName + "', PassWord = '"+ PassWord + "', Email = '" + Email + "', Friend = " + Friend + " Where ID =" + ID);
-          
+            ResultSet rs = s.executeQuery("UPDATE Club SET ID =" + ID + ", List = '" + List + "' ClubName = '" + ClubName + " Where ID = " + ID);
         }
        catch (SQLException ex){
            System.out.println("2"); 
@@ -72,13 +67,13 @@ public class ClubBiz {
     }
     
     
-    public void Delete(Player model) throws SQLException {
+    public void Delete(Club model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String sql = "DELETE FROM Player WHERE ID = " + ID;
+            String sql = "DELETE FROM Club WHERE ID = " + ID;
             
             
             ResultSet rs = s.executeQuery(sql);    

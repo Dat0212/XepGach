@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javaapplication5.dao.Player;
+import javaapplication5.dao.Round;
 
 /**
  *
@@ -25,18 +25,17 @@ public class RoundBiz {
         return this.connStr;
     }
     
-    public void Insert(Player model) throws SQLException {
+    public void Insert(Round model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String UseName = model.getUserName();
-            String PassWord = model.getPassWord();
-            String Email = model.getEmail();
-            int Friend = model.getFriend();
+            int NumberMatchID = model.getNumberMatchID();
+            String NameRound = model.getNameRound();
+            int TournamentID = model.getTournamentID();
             
-            s.executeQuery("insert into Player values (" + ID + ",'" + UseName + "', '"+ PassWord + "', '" + Email + "', " + Friend + ")");
+            s.executeQuery("insert into Round values (" + ID + "," + NumberMatchID + ", '"+ NameRound + "', " + TournamentID + ")");
             
         }
        catch (SQLException ex){
@@ -49,18 +48,17 @@ public class RoundBiz {
     }
     
     
-    public void Update(Player model) throws SQLException {
+    public void Update(Round model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String UseName = model.getUserName();
-            String PassWord = model.getPassWord();
-            String Email = model.getEmail();
-            int Friend = model.getFriend();
+            int NumberMatchID = model.getNumberMatchID();
+            String NameRound = model.getNameRound();
+            int TournamentID = model.getTournamentID();
             
-            ResultSet rs = s.executeQuery("UPDATE Player SET ID =" + ID + ", UseName = '" + UseName + "', PassWord = '"+ PassWord + "', Email = '" + Email + "', Friend = " + Friend + " Where ID =" + ID);
+            ResultSet rs = s.executeQuery("UPDATE Round SET ID =" + ID + ", NumberMatchID = " + NumberMatchID + ", NameRound = '"+ NameRound + "', TournamentID = " + TournamentID + " Where ID =" + ID);
           
         }
        catch (SQLException ex){
@@ -73,13 +71,13 @@ public class RoundBiz {
     }
     
     
-    public void Delete(Player model) throws SQLException {
+    public void Delete(Round model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String sql = "DELETE FROM Player WHERE ID = " + ID;
+            String sql = "DELETE FROM Round WHERE ID = " + ID;
             
             
             ResultSet rs = s.executeQuery(sql);    

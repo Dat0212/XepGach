@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javaapplication5.dao.Player;
+import javaapplication5.dao.PlayerRoom;
 
 /**
  *
@@ -25,18 +25,19 @@ public class PlayerRoomBiz {
         return this.connStr;
     }
     
-    public void Insert(Player model) throws SQLException {
+    public void Insert(PlayerRoom model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
-            int ID = model.getID();
-            String UseName = model.getUserName();
-            String PassWord = model.getPassWord();
-            String Email = model.getEmail();
-            int Friend = model.getFriend();
+            String Player1 = model.getPlayer1();
+            String Player2 = model.getPlayer2();
+            String TimePlay = model.getTimePlay();
+            float Score = model.getScore();
+            int RoomID = model.getRoomID();
+            int PlayerID = model.getPlayerID();
             
-            s.executeQuery("insert into Player values (" + ID + ",'" + UseName + "', '"+ PassWord + "', '" + Email + "', " + Friend + ")");
+            s.executeQuery("insert into PlayerRoom values (" + Player1 + ",'" + Player2 + "', '"+ TimePlay + "', '" + Score + "', " + RoomID + ", " + PlayerID + ")");
             
         }
        catch (SQLException ex){
@@ -49,18 +50,19 @@ public class PlayerRoomBiz {
     }
     
     
-    public void Update(Player model) throws SQLException {
+    public void Update(PlayerRoom model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
-            int ID = model.getID();
-            String UseName = model.getUserName();
-            String PassWord = model.getPassWord();
-            String Email = model.getEmail();
-            int Friend = model.getFriend();
+            String Player1 = model.getPlayer1();
+            String Player2 = model.getPlayer2();
+            String TimePlay = model.getTimePlay();
+            float Score = model.getScore();
+            int RoomID = model.getRoomID();
+            int PlayerID = model.getPlayerID();
             
-            ResultSet rs = s.executeQuery("UPDATE Player SET ID =" + ID + ", UseName = '" + UseName + "', PassWord = '"+ PassWord + "', Email = '" + Email + "', Friend = " + Friend + " Where ID =" + ID);
+            ResultSet rs = s.executeQuery("UPDATE PlayerRoom SET Player1 =" + Player1 + ", Player2 = '" + Player2 + "', TimePlay = '"+ TimePlay + "', Score = " + Score + ", RoomID = " + RoomID + " PlayerID =" + PlayerID + " Where ID =" + Player1);
           
         }
        catch (SQLException ex){
@@ -73,13 +75,13 @@ public class PlayerRoomBiz {
     }
     
     
-    public void Delete(Player model) throws SQLException {
+    public void Delete(PlayerRoom model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
-            int ID = model.getID();
-            String sql = "DELETE FROM Player WHERE ID = " + ID;
+            String Player1 = model.getPlayer1();
+            String sql = "DELETE FROM PlayerRoom WHERE Player1 = " + Player1;
             
             
             ResultSet rs = s.executeQuery(sql);    

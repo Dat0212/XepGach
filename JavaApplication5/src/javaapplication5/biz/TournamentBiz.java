@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javaapplication5.dao.Player;
+import javaapplication5.dao.Tournament;
 
 /**
  *
@@ -25,18 +25,20 @@ public class TournamentBiz {
         return this.connStr;
     }
     
-    public void Insert(Player model) throws SQLException {
+    public void Insert(Tournament model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String UseName = model.getUserName();
-            String PassWord = model.getPassWord();
-            String Email = model.getEmail();
-            int Friend = model.getFriend();
+            String Name = model.getName();
+            String TimeStart = model.getTimeStart();
+            String EndTime = model.getEndTime();
+            String Champion = model.getChampion();
+            float Record = model.getRecord();
+            String Prize = model.getPrize();
             
-            s.executeQuery("insert into Player values (" + ID + ",'" + UseName + "', '"+ PassWord + "', '" + Email + "', " + Friend + ")");
+            s.executeQuery("insert into Tournament values (" + ID + ",'" + Name + "', '"+ TimeStart + "', '" + EndTime + "', '" + Champion + "', " + Record + ", '" + Prize + "')");
             
         }
        catch (SQLException ex){
@@ -49,18 +51,20 @@ public class TournamentBiz {
     }
     
     
-    public void Update(Player model) throws SQLException {
+    public void Update(Tournament model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String UseName = model.getUserName();
-            String PassWord = model.getPassWord();
-            String Email = model.getEmail();
-            int Friend = model.getFriend();
+            String Name = model.getName();
+            String TimeStart = model.getTimeStart();
+            String EndTime = model.getEndTime();
+            String Champion = model.getChampion();
+            float Record = model.getRecord();
+            String Prize = model.getPrize();
             
-            ResultSet rs = s.executeQuery("UPDATE Player SET ID =" + ID + ", UseName = '" + UseName + "', PassWord = '"+ PassWord + "', Email = '" + Email + "', Friend = " + Friend + " Where ID =" + ID);
+            ResultSet rs = s.executeQuery("UPDATE Tournament SET ID =" + ID + ", Name = '" + Name + "', TimeStart = '"+ TimeStart + "', EndTime = '" + EndTime + "', 'Champion = " + Champion + "', Record = " + Record + ", 'Prize = " + Prize + " Where ID =" + ID);
           
         }
        catch (SQLException ex){
@@ -73,13 +77,13 @@ public class TournamentBiz {
     }
     
     
-    public void Delete(Player model) throws SQLException {
+    public void Delete(Tournament model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String sql = "DELETE FROM Player WHERE ID = " + ID;
+            String sql = "DELETE FROM Tournament WHERE ID = " + ID;
             
             
             ResultSet rs = s.executeQuery(sql);    

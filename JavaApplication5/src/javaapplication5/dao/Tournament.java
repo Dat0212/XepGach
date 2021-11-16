@@ -18,43 +18,62 @@ public class Tournament {
         this.ID = _ID;
     }
     
-    
-    private int Name;
-    public int getName(){
+    private String Name;
+    public String getName(){
         return this.Name;
     }
     
-    public void setName(int _Name){
+    public void setName(String _Name){
         this.Name = _Name;
     }
     
     
-    private int TimeStart;
-    public int getTimeStart(){
+    private String TimeStart;
+    public String getTimeStart(){
         return this.TimeStart;
     }
     
-    public void setTimeStart(int _Time_Start){
+    public void setTimeStart(String _Time_Start){
         this.TimeStart = _Time_Start;
     }
     
     
-    private int EndTime;
-    public int getEndTime(){
+    private String EndTime;
+    public String getEndTime(){
         return this.EndTime;
     }
     
-    public void setEndTime(int _End_Time){
+    public void setEndTime(String _End_Time){
         this.EndTime = _End_Time;
     }
     
     
-    private int Champion;
-    public int getChampion(){
+    private String Champion;
+    public String getChampion(){
         return this.Champion;
     }
     
-    public void setChampion(int _Champion){
+    public void setChampion(String _Champion){
         this.Champion = _Champion;
+    }
+    
+    
+    private float Record;
+    public float getRecord(){
+        return this.Record;
+    }
+    
+    public void setRecord(float _Record){
+        this.Record = _Record;
+    }
+    
+    
+    private String Prize;
+    public String getPrize(){
+        return this.Prize;
+    }
+    
+    public void setPrize(String _Prize){
+        this.Prize = _Prize;
     }
 }

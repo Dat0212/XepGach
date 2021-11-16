@@ -9,8 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javaapplication5.dao.Player;
-
+import javaapplication5.dao.JoinedPlayer;
 /**
  *
  * @author Admin
@@ -25,18 +24,18 @@ public class JoinedPlayerBiz {
         return this.connStr;
     }
     
-    public void Insert(Player model) throws SQLException {
+    public void Insert(JoinedPlayer model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String UseName = model.getUserName();
-            String PassWord = model.getPassWord();
-            String Email = model.getEmail();
-            int Friend = model.getFriend();
+            String JoinedDate = model.getJoinedDate();
+            int Player = model.getPlayer();
+            int ClubID = model.getClubID();
+            int PlayerID = model.getPlayerID();
             
-            s.executeQuery("insert into Player values (" + ID + ",'" + UseName + "', '"+ PassWord + "', '" + Email + "', " + Friend + ")");
+            s.executeQuery("insert into JoinedPlayer values (" + ID + ",'" + JoinedDate + "', '"+ Player + "', '" + ClubID + "', " + PlayerID + ")");
             
         }
        catch (SQLException ex){
@@ -49,18 +48,18 @@ public class JoinedPlayerBiz {
     }
     
     
-    public void Update(Player model) throws SQLException {
+    public void Update(JoinedPlayer model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String UseName = model.getUserName();
-            String PassWord = model.getPassWord();
-            String Email = model.getEmail();
-            int Friend = model.getFriend();
+            String JoinedDate = model.getJoinedDate();
+            int Player = model.getPlayer();
+            int ClubID = model.getClubID();
+            int PlayerID = model.getPlayerID();
             
-            ResultSet rs = s.executeQuery("UPDATE Player SET ID =" + ID + ", UseName = '" + UseName + "', PassWord = '"+ PassWord + "', Email = '" + Email + "', Friend = " + Friend + " Where ID =" + ID);
+            ResultSet rs = s.executeQuery("UPDATE JoinedPlayer SET ID =" + ID + ", JoinedDate = '" + JoinedDate + "', Player = '"+ Player + "', ClubID = '" + ClubID + "', PlayerID = " + PlayerID + " Where ID = " + ID);
           
         }
        catch (SQLException ex){
@@ -73,13 +72,13 @@ public class JoinedPlayerBiz {
     }
     
     
-    public void Delete(Player model) throws SQLException {
+    public void Delete(JoinedPlayer model) throws SQLException {
         Connection conn=DriverManager.getConnection(connStr);
         try {
 
             Statement s = conn.createStatement();
             int ID = model.getID();
-            String sql = "DELETE FROM Player WHERE ID = " + ID;
+            String sql = "DELETE FROM JoinedPlayer WHERE ID = " + ID;
             
             
             ResultSet rs = s.executeQuery(sql);    

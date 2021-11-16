@@ -57,4 +57,12 @@ public class Player {
     public void setFriend(int _Friend){
         this.Friend = _Friend;
     }
+
+    public int getList() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int ClubName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
